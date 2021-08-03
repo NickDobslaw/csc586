@@ -7,7 +7,7 @@ request = pc.makeRequestRSpec()
 
 tourDescription = \
 """
-This profile provides a two node set for Assignmetn two of CSC586
+This profile creates two nodes - observer and webserver
 """
 tour = IG.Tour()
 tour.Description(IG.Tour.TEXT,tourDescription)
@@ -17,13 +17,13 @@ link = request.LAN("lan")
 
 for i in range(2):
   if i == 0:
-    node = request.XenVM("webserver") #create webserver
+    node = request.XenVM("webserver") #webserver initialized
   else:
-    node = request.XenVM("observer")  #create observer
+    node = request.XenVM("observer")  #observer initialized
   if i == 0:
-    node.routable_control_ip = "true" #public ip for webserver
+    node.routable_control_ip = "true"
   else:
-    node.routable_control_ip = "false" #private ip for obsever
+    node.routable_control_ip = "false"
   
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
   iface = node.addInterface("if" + str(i))
